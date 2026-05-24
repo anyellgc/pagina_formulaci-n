@@ -1,0 +1,312 @@
+/* --- CONFIGURACIÓN DE COLORES UX ENRIQUECIDOS Y ANIMACIONES --- */
+:root {
+    --bg-main: #09090b;          /* Negro profundo */
+    --bg-card: #141419;          /* Carbón para tarjetas */
+    --bg-card-glow: #1c1c24;     /* Color de realce al pasar el cursor */
+    --red-primary: #f43f5e;      /* Rojo Carmesí Intenso y Tecnológico */
+    --red-hover: #e11d48;        /* Variación para transiciones */
+    --text-pure: #ffffff;
+    --text-muted: #a1a1aa;
+    --border-card: rgba(244, 63, 94, 0.08); /* Borde sutil carmesí */
+}
+
+/* --- RESET GENERAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+html {
+    font-size: 17px; 
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-pure);
+    overflow-x: hidden;
+    line-height: 1.65;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- MARCA DE AGUA INFERIOR DERECHA --- */
+.marca-agua-final {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(244, 63, 94, 0.6); /* Más color y visibilidad */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    z-index: 3000;
+    pointer-events: none;
+    background: rgba(9, 9, 11, 0.95);
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid rgba(244, 63, 94, 0.3);
+    border-right: 4px solid var(--red-primary);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+/* --- NAVBAR CON EFECTO GLOW --- */
+header {
+    background: rgba(9, 9, 11, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 2500;
+    border-bottom: 1px solid rgba(244, 63, 94, 0.1);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.3rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area { display: flex; align-items: center; gap: 20px; text-decoration: none;}
+.logo-icon { background: var(--red-primary); color: white; font-weight: 800; padding: 4px 8px; border-radius: 4px; font-family: 'Outfit', sans-serif; box-shadow: 0 0 15px rgba(244, 63, 94, 0.4); }
+.logo-text { font-size: 1.4rem; font-weight: 800; color: white; font-family: 'Outfit', sans-serif; }
+.logo-text span { color: var(--red-primary); }
+
+.nav-links { display: flex; list-style: none; gap: 1.8rem; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 5px 0; position: relative; transition: color 0.25s; }
+.nav-links a:hover, .nav-links a.active { color: var(--red-primary); text-shadow: 0 0 10px rgba(244, 63, 94, 0.3); }
+.nav-links a.active::after { content: ''; position: absolute; bottom: -24px; left: 0; width: 100%; height: 2px; background-color: var(--red-primary); box-shadow: 0 0 10px var(--red-primary); }
+
+/* --- CONTENEDOR SPA --- */
+.content-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; padding-top: 85px; }
+.tab-section { display: none; width: 100%; max-width: 1350px; margin: 0 auto; padding: 4.5rem 2rem; }
+.tab-section.active { display: block; }
+
+/* --- ANIMACIONES DE APARICIÓN (FADE-IN REVEAL) --- */
+.main-anim {
+    animation: heroReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes heroReveal {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Clase dinámica inyectada por JS al cambiar de pestaña */
+.reveal-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* --- VISTA DE INICIO (HERO) CON GRADIENTE --- */
+#inicio {
+    background: radial-gradient(circle at 85% 30%, rgba(244, 63, 94, 0.12), transparent 55%);
+}
+.hero-content { max-width: 950px; }
+.badge-red { background: rgba(244, 63, 94, 0.1); color: var(--red-primary); padding: 5px 14px; border-radius: 30px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(244, 63, 94, 0.25); display: inline-block; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+.hero-content h1 { font-family: 'Outfit', sans-serif; font-size: 3.8rem; font-weight: 800; line-height: 1.15; margin-bottom: 1.8rem; }
+.hero-content h1 span { color: var(--red-primary); text-shadow: 0 0 20px rgba(244, 63, 94, 0.2); }
+.hero-content p { color: var(--text-muted); font-size: 1.3rem; margin-bottom: 2.5rem; max-width: 850px; }
+
+/* --- BOTONES PREMIUM INTERACTIVOS --- */
+.btn { padding: 0.9rem 2.4rem; border-radius: 4px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border: none; display: inline-block; text-decoration: none; }
+.btn-red { background: var(--red-primary); color: white; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); }
+.btn-red:hover { background: var(--red-hover); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(244, 63, 94, 0.5); }
+.btn-outline { background: transparent; color: white; border: 1px solid rgba(255, 255, 255, 0.2); margin-left: 1rem; }
+.btn-outline:hover { border-color: var(--red-primary); color: var(--red-primary); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(244, 63, 94, 0.1); }
+
+/* --- OPTIMIZACIÓN Y ENSANCHAMIENTO DE CUADRÍCULAS (ANTI-ESTRECHO) --- */
+
+/* 1. Quiénes Somos */
+.empresa-descripcion-extensa {
+    background: linear-gradient(135deg, #131318, #0e0e12);
+    border: 1px solid var(--border-card);
+    padding: 3.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    box-shadow: inset 0 0 20px rgba(244, 63, 94, 0.02);
+}
+.empresa-descripcion-extensa p { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 1.5rem; text-align: justify; }
+.empresa-descripcion-extensa p:last-child { margin-bottom: 0; }
+
+/* REJILLA DE TARJETAS ANCHAS (Se cambia el mínimo para evitar columnas colapsadas) */
+.team-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(550px, 1fr)); /* Tarjetas notablemente más anchas */
+    gap: 2.5rem; 
+}
+.team-card { 
+    background: var(--bg-card); 
+    border: 1px solid rgba(255, 255, 255, 0.03); 
+    border-radius: 8px; 
+    padding: 3rem; 
+    display: flex; 
+    gap: 25px; 
+    transition: all 0.3s ease;
+}
+.team-card:hover { 
+    border-color: var(--red-primary); 
+    background-color: var(--bg-card-glow);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(244, 63, 94, 0.08);
+}
+.team-img-placeholder { width: 80px; height: 80px; background: linear-gradient(135deg, var(--red-primary), var(--red-hover)); color: white; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.5rem; flex-shrink: 0; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); }
+.team-info h3 { font-size: 1.45rem; margin-bottom: 4px; font-family: 'Outfit', sans-serif; }
+.team-info .puesto { color: var(--red-primary); font-weight: 700; font-size: 0.95rem; margin-bottom: 12px; }
+.team-info .bio { color: var(--text-muted); font-size: 1.1rem; text-align: justify; }
+
+/* 2. Filosofía (Misión y Visión) */
+.filosofia-container { display: flex; flex-direction: column; gap: 2.5rem; }
+.filosofia-card { 
+    background: var(--bg-card); 
+    border: 1px solid rgba(255, 255, 255, 0.03); 
+    padding: 3.5rem; 
+    border-radius: 8px; 
+    border-left: 5px solid var(--red-primary); 
+    transition: all 0.3s ease;
+}
+.filosofia-card:hover {
+    background-color: var(--bg-card-glow);
+    transform: translateX(5px);
+    box-shadow: 0 5px 25px rgba(244, 63, 94, 0.05);
+}
+.icon-red { font-size: 2.5rem; margin-bottom: 1rem; display: inline-block; }
+.filosofia-card h3 { margin-bottom: 1rem; font-size: 1.7rem; font-family: 'Outfit', sans-serif; }
+.filosofia-card p { color: var(--text-muted); font-size: 1.15rem; text-align: justify; }
+
+/* 3. Soluciones (Rejilla ancha y simétrica) */
+.servicios-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Tarjetas de soluciones más amplias */
+    gap: 2rem; 
+}
+.tarjeta-servicio { 
+    background: var(--bg-card); 
+    border: 1px solid rgba(255, 255, 255, 0.03); 
+    padding: 3rem; 
+    border-radius: 8px; 
+    position: relative; 
+    transition: all 0.3s ease; 
+}
+.tarjeta-servicio:hover { 
+    border-color: rgba(244, 63, 94, 0.4); 
+    background-color: var(--bg-card-glow);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(244, 63, 94, 0.06);
+}
+.card-line { position: absolute; top: 0; left: 0; height: 3px; width: 60px; background: var(--red-primary); transition: width 0.3s ease; }
+.tarjeta-servicio:hover .card-line { width: 100px; }
+.tarjeta-servicio h3 { margin-bottom: 1rem; font-size: 1.45rem; font-family: 'Outfit', sans-serif; }
+.tarjeta-servicio p { color: var(--text-muted); font-size: 1.1rem; }
+
+/* 4. Clientes */
+.contador-clientes-box { text-align: center; background: linear-gradient(135deg, #141419, #09090b); border: 1px solid var(--border-card); padding: 3rem; border-radius: 8px; margin-bottom: 3.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.contador-clientes-box .numero-grande { font-size: 4.5rem; font-weight: 800; color: var(--red-primary); font-family: 'Outfit', sans-serif; line-height: 1; margin-bottom: 0.5rem; text-shadow: 0 0 25px rgba(244, 63, 94, 0.4); }
+.contador-clientes-box p { color: var(--text-pure); font-size: 1.25rem; font-weight: 500; }
+
+.clientes-grid { 
+    display: grid; 
+    grid-template-columns: 1fr; /* Una sola columna ancha para testimonios de gran formato */
+    gap: 2rem; 
+}
+.tarjeta-cliente-extensa { 
+    background: var(--bg-card); 
+    border: 1px solid rgba(255, 255, 255, 0.03); 
+    padding: 3rem; 
+    border-radius: 8px; 
+    transition: all 0.3s ease;
+}
+.tarjeta-cliente-extensa:hover {
+    border-color: rgba(244, 63, 94, 0.3);
+    background-color: var(--bg-card-glow);
+}
+.cliente-header-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.8rem; }
+.cliente-header-info h4 { font-size: 1.35rem; font-family: 'Outfit', sans-serif; }
+.badge-status { background: rgba(244, 63, 94, 0.1); font-size: 0.85rem; font-weight: 700; color: var(--red-primary); padding: 4px 12px; border-radius: 4px; border: 1px solid rgba(244, 63, 94, 0.2); }
+.comentario-cliente { font-style: italic; color: var(--text-muted); font-size: 1.15rem; margin-bottom: 1.2rem; text-align: justify; }
+.autor-comentario { font-weight: 700; color: var(--text-pure); font-size: 1.05rem; }
+/* ==========================================================================
+   5. CUMPLIMIENTO (GARANTÍAS Y REQUERIMIENTOS LEGALES) - OPTIMIZADO ANCHO
+   ========================================================================== */
+
+.cumplimiento-grid { 
+    display: grid; 
+    /* Cambiado de 280px a 500px mínimos para forzar tarjetas anchas y evitar que el texto se comprima */
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); 
+    gap: 2rem; 
+    width: 100%;
+}
+
+.cumplimiento-card { 
+    background: linear-gradient(135deg, var(--bg-card), #0e0e12); 
+    border: 1px solid rgba(255, 255, 255, 0.03); 
+    /* Incrementado el padding interno para dar más aire al texto */
+    padding: 3rem; 
+    border-radius: 12px; 
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de iluminación interactiva al pasar el cursor */
+.cumplimiento-card:hover { 
+    border-color: rgba(244, 63, 94, 0.35); 
+    background: linear-gradient(135deg, var(--bg-card-glow), #13131a);
+    transform: translateY(-4px); 
+    box-shadow: 0 12px 30px rgba(244, 63, 94, 0.06);
+}
+
+/* Indicador visual interno para cada garantía */
+.cumplimiento-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0%;
+    background: var(--red-primary);
+    transition: height 0.3s ease;
+}
+
+.cumplimiento-card:hover::before {
+    height: 100%;
+}
+
+/* Estilos de tipografía escalados dentro de la tarjeta */
+.cumplimiento-card h4 { 
+    font-family: 'Outfit', sans-serif; 
+    font-size: 1.45rem; /* Título más imponente */
+    color: var(--text-pure); 
+    margin-bottom: 1rem; 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s;
+}
+
+.cumplimiento-card:hover h4 {
+    color: var(--red-primary);
+}
+
+.cumplimiento-card p { 
+    color: var(--text-muted); 
+    font-size: 1.15rem; /* Texto más grande y cómodo para la lectura */
+    text-align: justify;
+    line-height: 1.7;
+}
+
+/* Ajuste responsivo estricto para pantallas de celulares */
+@media (max-width: 768px) {
+    .cumplimiento-grid { 
+        grid-template-columns: 1fr; /* En móviles vuelve a ocupar todo el ancho disponible */
+    }
+    .cumplimiento-card {
+        padding: 2rem;
+    }
+}
